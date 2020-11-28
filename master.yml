@@ -1,0 +1,9 @@
+---
+- import_playbook: repo.yml
+- import_playbook: control.yml
+- import_playbook: servera.yml
+- import_playbook: serverb.yml
+- import_playbook: serverc.yml
+- import_playbook: serverd.yml
+#- import_playbook: keys.yml
+...

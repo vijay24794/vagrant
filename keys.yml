@@ -1,0 +1,54 @@
+---
+- name: Sending SSH Keys to servers
+  hosts: control
+  become: true
+  ignore_errors: yes
+  tasks: 
+  - name: Sending Key to servera
+    expect:
+      command: ssh-copy-id -i /home/user/.ssh/id_rsa.pub user@servera.example.com 
+      responses:
+        'Are you sure you want to continue connecting': 'yes'
+        'password': 'password'
+      timeout: 10
+    become_user: user
+  - name: Sending Key to serverb
+    expect:
+      command: ssh-copy-id -i /home/user/.ssh/id_rsa.pub user@serverb.example.com 
+      responses:
+        'Are you sure you want to continue connecting': 'yes'
+        'password': 'password'
+      timeout: 10
+    become_user: user
+  - name: Sending Key to serverc
+    expect:
+      command: ssh-copy-id -i /home/user/.ssh/id_rsa.pub user@serverc.example.com 
+      responses:
+        'Are you sure you want to continue connecting': 'yes'
+        'password': 'password'
+      timeout: 10
+    become_user: devops
+  - name: Sending Key to serverd
+    expect:
+      command: ssh-copy-id -i /home/user/.ssh/id_rsa.pub user@serverd.example.com 
+      responses:
+        'Are you sure you want to continue connecting': 'yes'
+        'password': 'password'
+      timeout: 10
+    become_user: user
+  - name: Welcome to the RHCE 8 Study/Test Environment!
+    debug:
+      msg:
+        - 'Next Steps: Accessing The Systems:'
+        - '- Control - 192.168.55.200'
+        - '- servera - 192.168.55.201'
+        - '- serverb - 192.168.55.202'
+        - '- serverc - 192.168.55.203'
+        - '- serverd - 192.168.55.204'
+        - '- Username/Password - user/password'
+        - '--------------------------------------------------'
+        - '- For root - use `sudo` or `sudo su`'
+        - '- Access example - ssh user@192.168.55.200'
+        - '- Happy Studying!'
+        
+...
